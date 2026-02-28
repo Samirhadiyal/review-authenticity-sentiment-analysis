@@ -4,8 +4,8 @@ import pickle
 
 
 # Load sentiment model and TF-IDF
-sentiment_model = pickle.load(open("sentiment.pkl", "rb"))
-sentiment_tfidf = pickle.load(open("sentiment_tfidf.pkl", "rb"))
+sentiment_model = pickle.load(open("models/sentiment.pkl", "rb"))
+sentiment_tfidf = pickle.load(open("models/sentiment_tfidf.pkl", "rb"))
 
 # Load fake review model and TF-IDF
 fake_model = pickle.load(open("fake_review_model.pkl", "rb"))
@@ -103,4 +103,5 @@ if uploaded_file is not None:
     """,
     unsafe_allow_html=True
 )
+
 
