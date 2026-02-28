@@ -23,8 +23,8 @@ if uploded_file is not None:
         st.error("CSV must contain a column named 'review_text', 'review', 'reviews', or 'feedback'")
         else: 
           st.success("File upload successfully") 
-    else: 
-        st.info("Please upload a CSV file")
+else: 
+    st.info("Please upload a CSV file")
 
         
 
@@ -107,6 +107,7 @@ if uploded_file is not None:
     """,
     unsafe_allow_html=True
 )
+
 
 
 
