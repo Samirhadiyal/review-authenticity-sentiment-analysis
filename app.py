@@ -26,52 +26,51 @@ if uploaded_file is not None:
 else:
     st.info("Please upload a CSV file.")
 
-    X_fake = fake_tfidf.transform(df["review_text"])
-        fake_probs = fake_model.predict_proba(X_fake)[:, 1]
+X_fake = fake_tfidf.transform(df["review_text"])
+fake_probs = fake_model.predict_proba(X_fake)[:, 1]
+ 
+threshold = 0.35
+df["is_fake"] = (fake_probs >= threshold).astype(int)
 
-        threshold = 0.35
-        df["is_fake"] = (fake_probs >= threshold).astype(int)
+genuine_df = df[df["is_fake"] == 0].copy()
 
-        genuine_df = df[df["is_fake"] == 0].copy()
+X_sent = sentiment_tfidf.transform(genuine_df["review_text"])
+genuine_df["sentiment"] = sentiment_model.predict(X_sent)
 
-        X_sent = sentiment_tfidf.transform(genuine_df["review_text"])
-        genuine_df["sentiment"] = sentiment_model.predict(X_sent)
-
-        genuine_df["sentiment_label"] = genuine_df["sentiment"].map({
+genuine_df["sentiment_label"] = genuine_df["sentiment"].map({
             1: "Positive",
             0: "Negative"
         })
 
-        st.subheader("Summary")
+st.subheader("Summary")
 
-        total_reviews = len(df)
-        fake_count = df["is_fake"].sum()
-        genuine_count = total_reviews - fake_count
+total_reviews = len(df)
+fake_count = df["is_fake"].sum()
+genuine_count = total_reviews - fake_count
+pos_count = (genuine_df["sentiment"] == 1).sum()
+neg_count = (genuine_df["sentiment"] == 0).sum()
 
-        pos_count = (genuine_df["sentiment"] == 1).sum()
-        neg_count = (genuine_df["sentiment"] == 0).sum()
+st.write(f"Total Reviews: {total_reviews}")
+st.write(f"Genuine Reviews: {genuine_count}")
+st.write(f"Potentially Fake Reviews: {fake_count}")
+st.write(f"Positive Reviews (Genuine): {pos_count}")
+st.write(f"Negative Reviews (Genuine): {neg_count}")
 
-        st.write(f"Total Reviews: {total_reviews}")
-        st.write(f"Genuine Reviews: {genuine_count}")
-        st.write(f"Potentially Fake Reviews: {fake_count}")
-        st.write(f"Positive Reviews (Genuine): {pos_count}")
-        st.write(f"Negative Reviews (Genuine): {neg_count}")
+st.subheader("Sentiment Distribution (Genuine Reviews)")
 
-        st.subheader("Sentiment Distribution (Genuine Reviews)")
-
-        sentiment_chart_df = pd.DataFrame({
+sentiment_chart_df = pd.DataFrame({
             "Sentiment": ["Positive", "Negative"],
             "Count": [pos_count, neg_count]
         })
 
-        st.bar_chart(sentiment_chart_df.set_index("Sentiment"))
+st.bar_chart(sentiment_chart_df.set_index("Sentiment"))
 
 
-        st.subheader("Review Analysis")
+st.subheader("Review Analysis")
 
-        st.subheader("Genuine Reviews")
+st.subheader("Genuine Reviews")
 
-        for _, row in genuine_df.iterrows():
+for _, row in genuine_df.iterrows():
             if row["sentiment_label"] == "Positive":
                 st.markdown(
     f"""
@@ -105,16 +104,3 @@ else:
     """,
     unsafe_allow_html=True
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
