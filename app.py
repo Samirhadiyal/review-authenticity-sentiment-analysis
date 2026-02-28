@@ -19,7 +19,7 @@ uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
 if uploded_file is not None: 
     df = pd.read_csv("uploaded_file")
 
-    if not any(col in df.columns col in["review","reviews"."review_text", "feedback"]):
+    if not any(col in df.columns col in["review", "reviews", "review_text", "feedback"]):
         st.error("CSV must contain a column named 'review_text', 'review', 'reviews', or 'feedback'")
         else: 
           st.success("File upload successfully") 
@@ -107,6 +107,7 @@ if uploded_file is not None:
     """,
     unsafe_allow_html=True
 )
+
 
 
 
