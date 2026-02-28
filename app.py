@@ -20,8 +20,8 @@ if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
 
    if not any(col in df.columns for col in ["review_text", "review", "reviews"]):
-    st.error("CSV must contain a column named 'review_text', 'review', or 'reviews'")
-   else:
+      st.error("CSV must contain a column named 'review_text', 'review', or 'reviews'")
+else:
     st.success("File uploaded successfully")
 
         X_fake = fake_tfidf.transform(df["review_text"])
@@ -103,6 +103,7 @@ if uploaded_file is not None:
     """,
     unsafe_allow_html=True
 )
+
 
 
 
