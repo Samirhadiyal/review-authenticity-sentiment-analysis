@@ -19,10 +19,10 @@ uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
 
-    if "review_text" not in df.columns:
-        st.error("CSV must contain a column named 'review_text'")
-    else:
-        st.success("File uploaded successfully")
+   if not any(col in df.columns for col in ["review_text", "review", "reviews"]):
+    st.error("CSV must contain a column named 'review_text', 'review', or 'reviews'")
+   else:
+    st.success("File uploaded successfully")
 
         X_fake = fake_tfidf.transform(df["review_text"])
         fake_probs = fake_model.predict_proba(X_fake)[:, 1]
@@ -103,6 +103,7 @@ if uploaded_file is not None:
     """,
     unsafe_allow_html=True
 )
+
 
 
 
