@@ -26,7 +26,7 @@ if uploaded_file is not None:
 else:
     st.info("Please upload a CSV file.")
 
-        X_fake = fake_tfidf.transform(df["review_text"])
+    X_fake = fake_tfidf.transform(df["review_text"])
         fake_probs = fake_model.predict_proba(X_fake)[:, 1]
 
         threshold = 0.35
@@ -105,6 +105,7 @@ else:
     """,
     unsafe_allow_html=True
 )
+
 
 
 
