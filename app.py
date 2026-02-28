@@ -16,15 +16,15 @@ st.write("Upload a CSV file containing reviews to analyze authenticity and senti
 
 uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
 
-if uploded_file is not None: 
-    df = pd.read_csv("uploaded_file")
- 
-    if not any(col in df.columns for col in["review", "reviews", "review_text", "feedback"]):
-        st.error("CSV must contain a column named 'review_text', 'review', 'reviews', or 'feedback'")
-        else: 
-          st.success("File upload successfully") 
-else: 
-    st.info("Please upload a CSV file")
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file)
+
+    if not any(col in df.columns for col in ["review_text", "review", "reviews"]):
+        st.error("CSV must contain a column named 'review_text', 'review', or 'reviews'")
+    else:
+        st.success("File uploaded successfully")
+else:
+    st.info("Please upload a CSV file.")
 
         
 
@@ -107,6 +107,7 @@ else:
     """,
     unsafe_allow_html=True
 )
+
 
 
 
