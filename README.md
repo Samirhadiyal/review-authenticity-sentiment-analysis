@@ -1,6 +1,8 @@
 # Review Authenticity and Sentiment Analysis
 An end to end Machine Learning project that detects potentially fake reviews and performs sentiment analysis on genuine reviews using NLP techniques.
 
+Check out app:- https://revguard.streamlit.app/
+
 ## Datasets Used
 
 Due to large file size limitations, the datasets used for this project are not included in the repository.
@@ -46,25 +48,6 @@ This design helps reduce noise in sentiment analysis caused by suspicious or low
 - NLP with TF IDF
 - Streamlit
 - Pandas and NumPy
-
----
-
-## Purpose of the Project
-
-This project is not intended for casual end users.  
-It is designed for:
-- Machine Learning learners
-- NLP practitioners
-- Students and researchers
-- Anyone interested in understanding practical ML pipelines
-
----
-
-## How to Run the Project
-
-1. Install dependencies 
-2. Run the Streamlit app  
-3. Upload a CSV file containing review text to analyze authenticity and sentiment.
 
 ---
 
