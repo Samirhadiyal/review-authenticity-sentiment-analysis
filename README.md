@@ -48,19 +48,4 @@ This design helps reduce noise in sentiment analysis caused by suspicious or low
 - Streamlit
 - Pandas and NumPy
 
----
 
-## Key Learnings
-
-- Handling noisy and proxy labeled data
-- Designing conservative ML systems
-- Working with text based features
-- Building complete ML pipelines from model training to deployment
-
----
-
-## Future Improvements
-
-- Better fake review labeling strategies
-- More advanced NLP models
-- Improved visualization and analytics
