@@ -21,7 +21,6 @@ The following publicly available datasets were used during model development:
 
 You can download these datasets directly from Kaggle or test the application using their own CSV files containing review text.
 
-
 ---
 
 ## Machine Learning and NLP Approach
